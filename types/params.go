@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"strings"
 
+	"gopkg.in/yaml.v2"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 )
@@ -18,16 +20,6 @@ var (
 	KeyGoalBonded          = []byte("GoalBonded")
 	KeyBlocksPerYear       = []byte("BlocksPerYear")
 )
-
-// mint parameters
-type Params struct {
-	MintDenom           string  `json:"mint_denom" yaml:"mint_denom"`                       // type of coin to mint
-	InflationRateChange sdk.Dec `json:"inflation_rate_change" yaml:"inflation_rate_change"` // maximum annual change in inflation rate
-	InflationMax        sdk.Dec `json:"inflation_max" yaml:"inflation_max"`                 // maximum inflation rate
-	InflationMin        sdk.Dec `json:"inflation_min" yaml:"inflation_min"`                 // minimum inflation rate
-	GoalBonded          sdk.Dec `json:"goal_bonded" yaml:"goal_bonded"`                     // goal of percent bonded atoms
-	BlocksPerYear       uint64  `json:"blocks_per_year" yaml:"blocks_per_year"`             // expected blocks per year
-}
 
 // ParamTable for minting module.
 func ParamKeyTable() paramtypes.KeyTable {
@@ -91,18 +83,10 @@ func (p Params) Validate() error {
 
 }
 
+// String implements the Stringer interface.
 func (p Params) String() string {
-	return fmt.Sprintf(`Minting Params:
-  Mint Denom:             %s
-  Inflation Rate Change:  %s
-  Inflation Max:          %s
-  Inflation Min:          %s
-  Goal Bonded:            %s
-  Blocks Per Year:        %d
-`,
-		p.MintDenom, p.InflationRateChange, p.InflationMax,
-		p.InflationMin, p.GoalBonded, p.BlocksPerYear,
-	)
+	out, _ := yaml.Marshal(p)
+	return string(out)
 }
 
 // Implements params.ParamSet

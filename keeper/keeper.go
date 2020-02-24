@@ -7,13 +7,13 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/mint/internal/types"
+	"github.com/cosmos/cosmos-sdk/x/mint/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 )
 
 // Keeper of the mint store
 type Keeper struct {
-	cdc              *codec.Codec
+	cdc              codec.Marshaler
 	storeKey         sdk.StoreKey
 	paramSpace       paramtypes.Subspace
 	sk               types.StakingKeeper
@@ -23,7 +23,7 @@ type Keeper struct {
 
 // NewKeeper creates a new mint Keeper instance
 func NewKeeper(
-	cdc *codec.Codec, key sdk.StoreKey, paramSpace paramtypes.Subspace,
+	cdc codec.Marshaler, key sdk.StoreKey, paramSpace paramtypes.Subspace,
 	sk types.StakingKeeper, supplyKeeper types.SupplyKeeper, feeCollectorName string,
 ) Keeper {
 
@@ -64,7 +64,7 @@ func (k Keeper) GetMinter(ctx sdk.Context) (minter types.Minter) {
 // set the minter
 func (k Keeper) SetMinter(ctx sdk.Context, minter types.Minter) {
 	store := ctx.KVStore(k.storeKey)
-	b := k.cdc.MustMarshalBinaryLengthPrefixed(minter)
+	b := k.cdc.MustMarshalBinaryLengthPrefixed(&minter)
 	store.Set(types.MinterKey, b)
 }
 

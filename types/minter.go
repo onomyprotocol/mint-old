@@ -6,12 +6,6 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-// Minter represents the minting state.
-type Minter struct {
-	Inflation        sdk.Dec `json:"inflation" yaml:"inflation"`                 // current annual inflation rate
-	AnnualProvisions sdk.Dec `json:"annual_provisions" yaml:"annual_provisions"` // current annual expected provisions
-}
-
 // NewMinter returns a new Minter object with the given inflation and annual
 // provisions values.
 func NewMinter(inflation, annualProvisions sdk.Dec) Minter {
