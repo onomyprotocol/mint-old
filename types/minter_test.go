@@ -13,6 +13,7 @@ func TestNextInflation(t *testing.T) {
 	minter := DefaultInitialMinter()
 	params := DefaultParams()
 	blocksPerYr := sdk.NewDec(int64(params.BlocksPerYear))
+	totalSupply := sdk.NewInt(int64(26000000))
 
 	// Governing Mechanism:
 	//    inflationRateChangePerYear = (1- BondedRatio/ GoalBonded) * MaxInflationRateChange
@@ -46,7 +47,7 @@ func TestNextInflation(t *testing.T) {
 	for i, tc := range tests {
 		minter.Inflation = tc.setInflation
 
-		inflation := minter.NextInflationRate(params, tc.bondedRatio)
+		inflation := minter.NextInflationRate(params, tc.bondedRatio, totalSupply)
 		diffInflation := inflation.Sub(tc.setInflation)
 
 		require.True(t, diffInflation.Equal(tc.expChange),
@@ -109,11 +110,12 @@ func BenchmarkNextInflation(b *testing.B) {
 	b.ReportAllocs()
 	minter := InitialMinter(sdk.NewDecWithPrec(1, 1))
 	params := DefaultParams()
+	totalSupply := sdk.NewInt(int64(26000000))
 	bondedRatio := sdk.NewDecWithPrec(1, 1)
 
 	// run the NextInflationRate function b.N times
 	for n := 0; n < b.N; n++ {
-		minter.NextInflationRate(params, bondedRatio)
+		minter.NextInflationRate(params, bondedRatio, totalSupply)
 	}
 
 }
