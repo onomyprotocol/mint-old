@@ -1,5 +1,7 @@
 # mint
 Onomy Protocol Mint Module
+The Onomy Protocol Mint module implements the staking inflation logic outlined here: 
+https://docs.onomy.io/proof-of-stake-staking/validator-staking
 
 The Mint module is a subtree fork of the x/mint directory of Comsos-SDK
 
