@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/require"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	keep "github.com/cosmos/cosmos-sdk/x/mint/keeper"
-	"github.com/cosmos/cosmos-sdk/x/mint/types"
+	keep "github.com/cosmos/onomyprotocol/mint/keeper"
+	"github.com/cosmos/onomyprotocol/mint/types"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 )
