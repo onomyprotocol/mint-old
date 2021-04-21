@@ -10,7 +10,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/onomyprotocol/mint/types"
+	"github.com/onomyprotocol/mint/types"
 )
 
 type MintTestSuite struct {

@@ -9,7 +9,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/cosmos/onomyprotocol/mint/types"
+	"github.com/onomyprotocol/mint/types"
 )
 
 // Simulation parameter constants

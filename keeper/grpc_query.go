@@ -4,7 +4,7 @@ import (
 	"context"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/onomyprotocol/mint/types"
+	"github.com/onomyprotocol/mint/types"
 )
 
 var _ types.QueryServer = Keeper{}

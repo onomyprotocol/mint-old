@@ -12,8 +12,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"github.com/cosmos/onomyprotocol/mint/simulation"
-	"github.com/cosmos/onomyprotocol/mint/types"
+	"github.com/onomyprotocol/mint/simulation"
+	"github.com/onomyprotocol/mint/types"
 )
 
 // TestRandomizedGenState tests the normal scenario of applying RandomizedGenState.

@@ -17,11 +17,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"github.com/cosmos/onomyprotocol/mint/client/cli"
-	"github.com/cosmos/onomyprotocol/mint/client/rest"
-	"github.com/cosmos/onomyprotocol/mint/keeper"
-	"github.com/cosmos/onomyprotocol/mint/simulation"
-	"github.com/cosmos/onomyprotocol/mint/types"
+	"github.com/onomyprotocol/mint/client/cli"
+	"github.com/onomyprotocol/mint/client/rest"
+	"github.com/onomyprotocol/mint/keeper"
+	"github.com/onomyprotocol/mint/simulation"
+	"github.com/onomyprotocol/mint/types"
 )
 
 var (

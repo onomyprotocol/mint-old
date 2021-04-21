@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/onomyprotocol/mint/simulation"
+	"github.com/onomyprotocol/mint/simulation"
 )
 
 func TestParamChangest(t *testing.T) {
