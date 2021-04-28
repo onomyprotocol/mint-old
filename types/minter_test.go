@@ -4,9 +4,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/stretchr/testify/require"
 )
 
 func TestNextInflation(t *testing.T) {
@@ -47,11 +46,24 @@ func TestNextInflation(t *testing.T) {
 	for i, tc := range tests {
 		minter.Inflation = tc.setInflation
 
-		inflation := minter.NextInflationRate(params, tc.bondedRatio, totalSupply)
-		diffInflation := inflation.Sub(tc.setInflation)
+		var inflation sdk.Dec
 
-		require.True(t, diffInflation.Equal(tc.expChange),
-			"Test Index: %v\nDiff:  %v\nExpected: %v\n", i, diffInflation, tc.expChange)
+		// calculate annual inflation
+		for h := 0; h < 24*365; h++ {
+			inflation = minter.NextInflationRate(params, tc.bondedRatio, totalSupply)
+			diffInflation := inflation.Sub(tc.setInflation)
+
+			require.True(t, diffInflation.Equal(tc.expChange),
+				"Test Index: %v\nDiff: %v\nExpected: %v\n", i, diffInflation, tc.expChange)
+
+			inflation.Add(diffInflation)
+		}
+
+		require.True(
+			t,
+			inflation.Sub(sdk.NewDecWithPrec(7, 2)).GTE(sdk.ZeroDec()) &&
+			sdk.NewDecWithPrec(20, 2).Sub(inflation).GTE(sdk.ZeroDec()),
+		)
 	}
 }
 
