@@ -1,3 +1,4 @@
+//go:build norace
 // +build norace
 
 package cli_test
@@ -14,8 +15,8 @@ import (
 	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"
 	testnet "github.com/cosmos/cosmos-sdk/testutil/network"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/mint/client/cli"
-	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
+	"github.com/onomyprotocol/mint/client/cli"
+	minttypes "github.com/onomyprotocol/mint/types"
 )
 
 type IntegrationTestSuite struct {
